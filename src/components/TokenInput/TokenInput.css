@@ -1,0 +1,47 @@
+.token-input__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.token-input__header h2 {
+  margin: 0;
+}
+
+.token-input__eyebrow {
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #607291;
+}
+
+.token-input__stats {
+  font-size: 0.92rem;
+  color: #556987;
+  white-space: nowrap;
+}
+
+.token-input__helper {
+  margin: 0.9rem 0 1rem;
+  color: #556987;
+  line-height: 1.5;
+}
+
+.token-input__textarea {
+  width: 100%;
+  min-height: 18rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(78, 95, 125, 0.22);
+  padding: 0.95rem 1rem;
+  resize: vertical;
+  background: #fbfdff;
+}
+
+.token-input__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}

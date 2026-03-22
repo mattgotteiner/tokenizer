@@ -1,0 +1,134 @@
+.token-results__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.token-results__header h2 {
+  margin: 0;
+}
+
+.token-results__eyebrow {
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #607291;
+}
+
+.token-results__pill {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: #edf4ff;
+  color: #174ea6;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.token-results__summary-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.token-results__summary-grid article {
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  background: #f6f9fe;
+  border: 1px solid rgba(78, 95, 125, 0.14);
+}
+
+.token-results__summary-grid span {
+  display: block;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #607291;
+}
+
+.token-results__summary-grid strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.15rem;
+}
+
+.token-results__context {
+  margin-top: 1rem;
+}
+
+.token-results__context h3 {
+  margin: 0 0 0.75rem;
+}
+
+.token-results__context-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.token-results__context-item {
+  padding: 0.8rem 0.95rem;
+  background: #f8fbff;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(78, 95, 125, 0.12);
+}
+
+.token-results__context-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+}
+
+.token-results__bar {
+  height: 0.65rem;
+  border-radius: 999px;
+  background: #dce7f7;
+  overflow: hidden;
+}
+
+.token-results__bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2f80ed 0%, #56ccf2 100%);
+}
+
+.token-results__table-wrap {
+  margin-top: 1rem;
+  max-height: 30rem;
+  overflow: auto;
+  border: 1px solid rgba(78, 95, 125, 0.14);
+  border-radius: 1rem;
+}
+
+.token-results__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.token-results__table th,
+.token-results__table td {
+  padding: 0.7rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(78, 95, 125, 0.1);
+}
+
+.token-results__table thead th {
+  position: sticky;
+  top: 0;
+  background: #f6f9fe;
+  z-index: 1;
+}
+
+.token-results--empty {
+  padding: 1.5rem 0.25rem 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .token-results__summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,140 @@
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 18, 37, 0.42);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 50;
+}
+
+.settings-sidebar {
+  width: min(30rem, 100%);
+  height: 100%;
+  background: #ffffff;
+  color: #14213d;
+  box-shadow: -16px 0 40px rgba(14, 28, 53, 0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(20, 33, 61, 0.08);
+}
+
+.settings-sidebar__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.settings-sidebar__close {
+  border: 0;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: inherit;
+}
+
+.settings-sidebar__content {
+  overflow-y: auto;
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+.settings-section + .settings-section {
+  margin-top: 1.5rem;
+}
+
+.settings-section__title {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4e5f7d;
+}
+
+.settings-section__notice {
+  margin: 0.6rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #556987;
+}
+
+.settings-field__label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 600;
+}
+
+.settings-field__radio-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.settings-field__radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.settings-sidebar__control {
+  width: 100%;
+  border: 1px solid rgba(78, 95, 125, 0.24);
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: #fbfdff;
+}
+
+.mapping-list {
+  margin: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.mapping-list div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.mapping-list dt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #607291;
+}
+
+.mapping-list dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.settings-sidebar__mapping-card {
+  margin-top: 0.85rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #f6f9fe;
+  border: 1px solid rgba(78, 95, 125, 0.14);
+}
+
+.settings-sidebar__mapping-card h4 {
+  margin: 0 0 0.85rem;
+}
+
+.settings-sidebar__model-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.settings-sidebar__model-list li span {
+  display: block;
+  margin-top: 0.15rem;
+  color: #556987;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
