@@ -102,7 +102,7 @@
 
 .token-results__token {
   border: 1px solid var(--token-color-border);
-  border-radius: 0.45rem;
+  border-radius: 0;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   padding: 0.1rem 0.18rem;
