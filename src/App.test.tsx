@@ -15,10 +15,13 @@ describe('App', () => {
     const user = userEvent.setup()
     render(<App />)
 
+    expect(screen.queryByLabelText('Tokenizer summary')).not.toBeInTheDocument()
+
     await user.click(screen.getByRole('button', { name: 'Open settings' }))
     await user.click(screen.getByLabelText('Select cl100k_base tokenizer family'))
 
-    expect(screen.getByText('cl100k_base tokenizer')).toBeInTheDocument()
-    expect(screen.getByText(/Active Azure family: GPT-4 Turbo\./)).toBeInTheDocument()
+    expect(
+      screen.getByText(/Current tokenizer: cl100k_base .* active family: GPT-4 Turbo/i),
+    ).toBeInTheDocument()
   })
 })

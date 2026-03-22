@@ -12,7 +12,7 @@ import { SettingsSidebar } from './components/SettingsSidebar/SettingsSidebar'
 import { TokenInput } from './components/TokenInput/TokenInput'
 import { TokenResults } from './components/TokenResults/TokenResults'
 import { SettingsProvider, useSettingsContext } from './context/SettingsContext'
-import { getEncodingDefinition, getModelsForEncoding } from './types'
+import { getEncodingDefinition } from './types'
 import type { Theme } from './types'
 import { tokenizeText } from './utils/tokenization'
 
@@ -45,7 +45,6 @@ function AppContent(): React.ReactElement {
   )
 
   const activeEncoding = getEncodingDefinition(result.encoding)
-  const mappedModels = getModelsForEncoding(result.encoding)
 
   return (
     <ThemeProvider initialTheme={settings.theme} persist={false}>
@@ -57,51 +56,43 @@ function AppContent(): React.ReactElement {
               <div className="app-title-block">
                 <h1>Tokenizer</h1>
               </div>
-             }
-             subtitle="Paste text, switch model families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
-             trailing={
-               <SettingsButton onClick={() => setIsSettingsOpen(true)} />
-             }
-           />
-         }
-       >
-        <section className="app-banner" aria-label="Tokenizer summary">
-          <h2 className="app-banner__title">{`${result.encoding} tokenizer`}</h2>
-          <p className="app-banner__message">
-            {activeEncoding.summary} Active Azure family: {result.model.label}. This tokenizer is
-            shared by {mappedModels.length} curated Azure OpenAI GPT model families in this app.
-          </p>
-        </section>
+            }
+            subtitle="Paste text, switch tokenizer families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
+            trailing={
+                <SettingsButton onClick={() => setIsSettingsOpen(true)} />
+            }
+          />
+        }
+      >
+          <div className="app-layout">
+            <Panel as="section">
+              <TokenInput
+                inputText={inputText}
+                onClear={() => setInputText('')}
+                onInputChange={setInputText}
+                onLoadSample={() =>
+                  setInputText(
+                    'Tokenization matters when you are budgeting prompt size, comparing deployment families, and understanding how much context your Azure OpenAI request will consume.',
+                  )
+                }
+                result={result}
+              />
+            </Panel>
 
-        <div className="app-layout">
-          <Panel as="section">
-            <TokenInput
-              inputText={inputText}
-              onClear={() => setInputText('')}
-              onInputChange={setInputText}
-              onLoadSample={() =>
-                setInputText(
-                  'Tokenization matters when you are budgeting prompt size, comparing deployment families, and understanding how much context your Azure OpenAI request will consume.',
-                )
-              }
-              result={result}
-            />
-          </Panel>
+            <Panel as="section">
+              <TokenResults result={result} />
+            </Panel>
+          </div>
 
-          <Panel as="section">
-            <TokenResults result={result} />
-          </Panel>
-        </div>
-
-        <SettingsSidebar
-          encoding={activeEncoding}
-          isOpen={isSettingsOpen}
-          onClose={() => setIsSettingsOpen(false)}
-          onReset={resetSettings}
-          onUpdate={updateSettings}
-          settings={settings}
-        />
-      </AppShell>
+          <SettingsSidebar
+            encoding={activeEncoding}
+            isOpen={isSettingsOpen}
+            onClose={() => setIsSettingsOpen(false)}
+            onReset={resetSettings}
+            onUpdate={updateSettings}
+            settings={settings}
+          />
+        </AppShell>
     </ThemeProvider>
   )
 }
