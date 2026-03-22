@@ -5,8 +5,8 @@ A Vite + React + TypeScript SPA for pasting text and inspecting how common Azure
 ## What it does
 
 - Accepts pasted or typed text
-- Lets you target a curated Azure OpenAI GPT model family
-- Shows the tokenizer/encoding used for that family
+- Lets you pick a tokenizer family first, with curated Azure OpenAI GPT families shown as context
+- Shows the active tokenizer/encoding plus its representative Azure family
 - Breaks the input into token IDs and decoded token pieces
 - Surfaces which other Azure OpenAI GPT families share the same tokenizer
 - Supports `light`, `dark`, and `system` themes in a settings sidebar
@@ -36,7 +36,7 @@ npm install
 npm run dev
 ```
 
-Then open the Vite URL, paste text, and optionally open the settings sidebar to switch GPT model families or theme preference.
+Then open the Vite URL, paste text, and optionally open the settings sidebar to switch tokenizer families or theme preference.
 
 ## Available scripts
 

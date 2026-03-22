@@ -1,18 +1,16 @@
-import { Button, FormField } from '@mattgotteiner/spa-ui-controls'
+import { Button } from '@mattgotteiner/spa-ui-controls'
 import { useEffect } from 'react'
 import {
-  MODEL_DEFINITIONS,
   THEME_OPTIONS,
   type AppSettings,
   type EncodingDefinition,
-  type ModelDefinition,
+  getTokenizerSelections,
 } from '../../types'
 import './SettingsSidebar.css'
 
 interface SettingsSidebarProps {
   encoding: EncodingDefinition
   isOpen: boolean
-  mappedModels: ModelDefinition[]
   onClose: () => void
   onReset: () => void
   onUpdate: (updates: Partial<AppSettings>) => void
@@ -22,12 +20,13 @@ interface SettingsSidebarProps {
 export function SettingsSidebar({
   encoding,
   isOpen,
-  mappedModels,
   onClose,
   onReset,
   onUpdate,
   settings,
 }: SettingsSidebarProps): React.ReactElement {
+  const tokenizerSelections = getTokenizerSelections()
+
   useEffect(() => {
     if (!isOpen) {
       return undefined
@@ -106,57 +105,51 @@ export function SettingsSidebar({
           </section>
 
           <section className="settings-section">
-            <h3 className="settings-section__title">Azure OpenAI target</h3>
+            <h3 className="settings-section__title">Tokenizer family</h3>
+            <p className="settings-section__notice">
+              Choose the tokenizer behavior you want to inspect. Azure OpenAI model families that
+              share that tokenizer are shown under each option.
+            </p>
 
-            <FormField
-              htmlFor="settings-model"
-              label="GPT model family"
-              hint="Choose the Azure OpenAI GPT family whose tokenizer behavior you want to inspect."
-            >
-              <select
-                id="settings-model"
-                className="settings-sidebar__control"
-                value={settings.modelId}
-                onChange={(event) =>
-                  onUpdate({ modelId: event.target.value as AppSettings['modelId'] })
-                }
-              >
-                {MODEL_DEFINITIONS.map((model) => (
-                  <option key={model.id} value={model.id}>
-                    {model.label}
-                  </option>
-                ))}
-              </select>
-            </FormField>
-          </section>
+            <div className="settings-sidebar__tokenizer-options" role="radiogroup">
+              {tokenizerSelections.map((selection) => {
+                const isSelected = encoding.id === selection.encoding.id
 
-          <section className="settings-section">
-            <h3 className="settings-section__title">Tokenizer mapping</h3>
-
-            <dl className="mapping-list">
-              <div>
-                <dt>Tokenizer</dt>
-                <dd>{encoding.label}</dd>
-              </div>
-              <div>
-                <dt>Selected target</dt>
-                <dd>{MODEL_DEFINITIONS.find((model) => model.id === settings.modelId)?.label}</dd>
-              </div>
-            </dl>
-
-            <p className="settings-section__notice">{encoding.summary}</p>
-            <p className="settings-section__notice">{encoding.notes}</p>
-
-            <div className="settings-sidebar__mapping-card">
-              <h4>AOAI GPT families sharing this tokenizer</h4>
-              <ul className="settings-sidebar__model-list">
-                {mappedModels.map((model) => (
-                  <li key={model.id}>
-                    <strong>{model.label}</strong>
-                    <span>{model.notes}</span>
-                  </li>
-                ))}
-              </ul>
+                return (
+                  <label
+                    key={selection.encoding.id}
+                    className={`settings-sidebar__tokenizer-option${isSelected ? ' settings-sidebar__tokenizer-option--selected' : ''}`}
+                  >
+                    <input
+                      type="radio"
+                      name="tokenizer-family"
+                      className="settings-sidebar__tokenizer-radio"
+                      aria-label={`Select ${selection.encoding.label} tokenizer family`}
+                      checked={isSelected}
+                      onChange={() => onUpdate({ modelId: selection.encoding.representativeModelId })}
+                    />
+                    <span className="settings-sidebar__tokenizer-body">
+                      <span className="settings-sidebar__tokenizer-header">
+                        <span className="settings-sidebar__tokenizer-title">
+                          {selection.encoding.label}
+                        </span>
+                        <span className="settings-sidebar__tokenizer-badge">
+                          Default family: {selection.representativeModel.label}
+                        </span>
+                      </span>
+                      <span className="settings-sidebar__tokenizer-summary">
+                        {selection.encoding.summary}
+                      </span>
+                      <span className="settings-sidebar__tokenizer-families-label">
+                        Azure families
+                      </span>
+                      <span className="settings-sidebar__tokenizer-families">
+                        {selection.modelFamilies.map((model) => model.label).join(', ')}
+                      </span>
+                    </span>
+                  </label>
+                )
+              })}
             </div>
           </section>
 
@@ -165,6 +158,13 @@ export function SettingsSidebar({
             <p className="settings-section__notice">
               These mappings are curated for common Azure OpenAI GPT deployments and are best used
               as a practical testing reference.
+            </p>
+            <p className="settings-section__notice">
+              {encoding.notes}
+            </p>
+            <p className="settings-section__notice">
+              Token counts come from the selected tokenizer family, while the active Azure family is
+              kept as a deterministic representative mapping for this app.
             </p>
             <Button variant="danger" onClick={onReset}>
               Reset defaults

@@ -16,8 +16,9 @@ describe('App', () => {
     render(<App />)
 
     await user.click(screen.getByRole('button', { name: 'Open settings' }))
-    await user.selectOptions(screen.getByLabelText('GPT model family'), 'gpt-35-turbo')
+    await user.click(screen.getByLabelText('Select cl100k_base tokenizer family'))
 
-    expect(screen.getByText('GPT-35 Turbo uses cl100k_base')).toBeInTheDocument()
+    expect(screen.getByText('cl100k_base tokenizer')).toBeInTheDocument()
+    expect(screen.getByText(/Active Azure family: GPT-4 Turbo\./)).toBeInTheDocument()
   })
 })

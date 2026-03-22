@@ -48,7 +48,7 @@ export function TokenResults({ result }: TokenResultsProps): React.ReactElement 
           <strong>{result.averageCharactersPerToken.toFixed(2)}</strong>
         </article>
         <article>
-          <span>Model family</span>
+          <span>Active family</span>
           <strong>{result.model.label}</strong>
         </article>
       </div>

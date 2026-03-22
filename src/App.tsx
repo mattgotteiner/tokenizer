@@ -66,10 +66,10 @@ function AppContent(): React.ReactElement {
          }
        >
         <section className="app-banner" aria-label="Tokenizer summary">
-          <h2 className="app-banner__title">{`${result.model.label} uses ${result.encoding}`}</h2>
+          <h2 className="app-banner__title">{`${result.encoding} tokenizer`}</h2>
           <p className="app-banner__message">
-            {activeEncoding.summary} This encoding is shared by {mappedModels.length} curated Azure
-            OpenAI GPT model families in this app.
+            {activeEncoding.summary} Active Azure family: {result.model.label}. This tokenizer is
+            shared by {mappedModels.length} curated Azure OpenAI GPT model families in this app.
           </p>
         </section>
 
@@ -96,7 +96,6 @@ function AppContent(): React.ReactElement {
         <SettingsSidebar
           encoding={activeEncoding}
           isOpen={isSettingsOpen}
-          mappedModels={mappedModels}
           onClose={() => setIsSettingsOpen(false)}
           onReset={resetSettings}
           onUpdate={updateSettings}
