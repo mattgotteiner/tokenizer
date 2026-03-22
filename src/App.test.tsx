@@ -15,7 +15,7 @@ describe('App', () => {
     const user = userEvent.setup()
     render(<App />)
 
-    await user.click(screen.getByRole('button', { name: 'Settings' }))
+    await user.click(screen.getByRole('button', { name: 'Open settings' }))
     await user.selectOptions(screen.getByLabelText('GPT model family'), 'gpt-35-turbo')
 
     expect(screen.getByText('GPT-35 Turbo uses cl100k_base')).toBeInTheDocument()

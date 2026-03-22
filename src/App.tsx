@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   AppShell,
-  Button,
   Panel,
   ThemeProvider,
   TopBar,
   useTheme,
 } from '@mattgotteiner/spa-ui-controls'
 import './App.css'
+import { SettingsButton } from './components/SettingsButton/SettingsButton'
 import { SettingsSidebar } from './components/SettingsSidebar/SettingsSidebar'
 import { TokenInput } from './components/TokenInput/TokenInput'
 import { TokenResults } from './components/TokenResults/TokenResults'
@@ -57,16 +57,14 @@ function AppContent(): React.ReactElement {
               <div className="app-title-block">
                 <h1>Tokenizer</h1>
               </div>
-            }
-            subtitle="Paste text, switch model families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
-            trailing={
-              <Button variant="secondary" onClick={() => setIsSettingsOpen(true)}>
-                Settings
-              </Button>
-            }
-          />
-        }
-      >
+             }
+             subtitle="Paste text, switch model families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
+             trailing={
+               <SettingsButton onClick={() => setIsSettingsOpen(true)} />
+             }
+           />
+         }
+       >
         <section className="app-banner" aria-label="Tokenizer summary">
           <h2 className="app-banner__title">{`${result.model.label} uses ${result.encoding}`}</h2>
           <p className="app-banner__message">
