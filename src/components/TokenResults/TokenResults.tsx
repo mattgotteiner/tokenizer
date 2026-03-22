@@ -31,7 +31,6 @@ export function TokenResults({ result }: TokenResultsProps): React.ReactElement 
           <p className="token-results__eyebrow">Results</p>
           <h2>Token breakdown</h2>
         </div>
-        <div className="token-results__pill">{result.encoding}</div>
       </div>
 
       <div className="token-results__summary-grid">
@@ -48,8 +47,8 @@ export function TokenResults({ result }: TokenResultsProps): React.ReactElement 
           <strong>{result.averageCharactersPerToken.toFixed(2)}</strong>
         </article>
         <article>
-          <span>Model family</span>
-          <strong>{result.model.label}</strong>
+          <span>Tokenizer</span>
+          <strong>{result.encoding}</strong>
         </article>
       </div>
 
@@ -58,9 +57,6 @@ export function TokenResults({ result }: TokenResultsProps): React.ReactElement 
           <div>
             <h3>Highlighted tokenization</h3>
             <p>Original text, split exactly where the selected tokenizer breaks it apart.</p>
-          </div>
-          <div className="token-results__piece-count">
-            {result.tokens.length.toLocaleString()} pieces
           </div>
         </div>
 

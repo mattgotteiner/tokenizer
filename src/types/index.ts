@@ -28,8 +28,14 @@ export interface ModelDefinition {
 export interface EncodingDefinition {
   id: EncodingName
   label: string
+  representativeModelId: ModelId
   summary: string
   notes: string
+}
+
+export interface TokenizerSelectionDefinition {
+  encoding: EncodingDefinition
+  modelFamilies: ModelDefinition[]
 }
 
 export interface AppSettings {
@@ -130,6 +136,7 @@ export const ENCODING_DEFINITIONS: readonly EncodingDefinition[] = [
   {
     id: 'o200k_base',
     label: 'o200k_base',
+    representativeModelId: 'gpt-5',
     summary:
       'Newer OpenAI tokenizer family used by current GPT-4o, GPT-4.1, and GPT-5 style model families.',
     notes:
@@ -138,6 +145,7 @@ export const ENCODING_DEFINITIONS: readonly EncodingDefinition[] = [
   {
     id: 'cl100k_base',
     label: 'cl100k_base',
+    representativeModelId: 'gpt-4-turbo',
     summary:
       'Established tokenizer family used by GPT-4 Turbo, GPT-4, and GPT-35 Turbo style deployments.',
     notes:
@@ -172,4 +180,11 @@ export function getEncodingDefinition(encoding: EncodingName): EncodingDefinitio
 
 export function getModelsForEncoding(encoding: EncodingName): ModelDefinition[] {
   return MODEL_DEFINITIONS.filter((model) => model.encoding === encoding)
+}
+
+export function getTokenizerSelections(): TokenizerSelectionDefinition[] {
+  return ENCODING_DEFINITIONS.map((encoding) => ({
+    encoding,
+    modelFamilies: getModelsForEncoding(encoding.id),
+  }))
 }

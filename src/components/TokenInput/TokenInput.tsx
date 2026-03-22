@@ -31,13 +31,13 @@ export function TokenInput({
 
       <p className="token-input__helper">
         This browser-only tool uses a tiktoken-compatible encoder to estimate how your selected
-        Azure OpenAI GPT family will split input into tokens.
+        Azure OpenAI tokenizer family will split input into tokens.
       </p>
 
       <FormField
         htmlFor="token-input-textarea"
         label="Input text"
-        hint={`Current target: ${result.model.label} → ${result.encoding}`}
+        hint={`Current tokenizer: ${result.encoding} • active family: ${result.model.label}`}
       >
         <textarea
           id="token-input-textarea"
