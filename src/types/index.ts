@@ -36,7 +36,6 @@ export interface EncodingDefinition {
 export interface TokenizerSelectionDefinition {
   encoding: EncodingDefinition
   modelFamilies: ModelDefinition[]
-  representativeModel: ModelDefinition
 }
 
 export interface AppSettings {
@@ -179,10 +178,6 @@ export function getEncodingDefinition(encoding: EncodingName): EncodingDefinitio
   return match
 }
 
-export function getRepresentativeModelForEncoding(encoding: EncodingName): ModelDefinition {
-  return getModelDefinition(getEncodingDefinition(encoding).representativeModelId)
-}
-
 export function getModelsForEncoding(encoding: EncodingName): ModelDefinition[] {
   return MODEL_DEFINITIONS.filter((model) => model.encoding === encoding)
 }
@@ -191,6 +186,5 @@ export function getTokenizerSelections(): TokenizerSelectionDefinition[] {
   return ENCODING_DEFINITIONS.map((encoding) => ({
     encoding,
     modelFamilies: getModelsForEncoding(encoding.id),
-    representativeModel: getRepresentativeModelForEncoding(encoding.id),
   }))
 }

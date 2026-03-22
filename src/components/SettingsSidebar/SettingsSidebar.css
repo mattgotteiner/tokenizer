@@ -122,7 +122,6 @@
 }
 
 .settings-sidebar__tokenizer-options {
-  margin-top: 1.35rem;
   display: grid;
   gap: 1.15rem;
 }
@@ -160,13 +159,7 @@
 
 .settings-sidebar__tokenizer-body {
   display: grid;
-  gap: 0.45rem;
-}
-
-.settings-sidebar__tokenizer-header {
-  display: grid;
-  gap: 0.45rem;
-  align-items: start;
+  gap: 0.35rem;
 }
 
 .settings-sidebar__tokenizer-title {
@@ -174,29 +167,10 @@
   color: var(--color-text);
 }
 
-.settings-sidebar__tokenizer-badge {
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  background: var(--spa-color-surface-elevated);
-  color: var(--color-text-secondary);
-  font-size: 0.82rem;
-  font-weight: 600;
-  width: fit-content;
-}
-
-.settings-sidebar__tokenizer-summary,
 .settings-sidebar__tokenizer-families {
   color: var(--color-text-secondary);
   font-size: 0.92rem;
   line-height: 1.45;
-}
-
-.settings-sidebar__tokenizer-families-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-secondary);
 }
 
 @media (max-width: 480px) {

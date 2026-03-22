@@ -106,11 +106,6 @@ export function SettingsSidebar({
 
           <section className="settings-section">
             <h3 className="settings-section__title">Tokenizer family</h3>
-            <p className="settings-section__notice">
-              Choose the tokenizer behavior you want to inspect. Azure OpenAI model families that
-              share that tokenizer are shown under each option.
-            </p>
-
             <div className="settings-sidebar__tokenizer-options" role="radiogroup">
               {tokenizerSelections.map((selection) => {
                 const isSelected = encoding.id === selection.encoding.id
@@ -129,19 +124,8 @@ export function SettingsSidebar({
                       onChange={() => onUpdate({ modelId: selection.encoding.representativeModelId })}
                     />
                     <span className="settings-sidebar__tokenizer-body">
-                      <span className="settings-sidebar__tokenizer-header">
-                        <span className="settings-sidebar__tokenizer-title">
-                          {selection.encoding.label}
-                        </span>
-                        <span className="settings-sidebar__tokenizer-badge">
-                          Default family: {selection.representativeModel.label}
-                        </span>
-                      </span>
-                      <span className="settings-sidebar__tokenizer-summary">
-                        {selection.encoding.summary}
-                      </span>
-                      <span className="settings-sidebar__tokenizer-families-label">
-                        Azure families
+                      <span className="settings-sidebar__tokenizer-title">
+                        {selection.encoding.label}
                       </span>
                       <span className="settings-sidebar__tokenizer-families">
                         {selection.modelFamilies.map((model) => model.label).join(', ')}
@@ -154,18 +138,6 @@ export function SettingsSidebar({
           </section>
 
           <section className="settings-section">
-            <h3 className="settings-section__title">Notes</h3>
-            <p className="settings-section__notice">
-              These mappings are curated for common Azure OpenAI GPT deployments and are best used
-              as a practical testing reference.
-            </p>
-            <p className="settings-section__notice">
-              {encoding.notes}
-            </p>
-            <p className="settings-section__notice">
-              Token counts come from the selected tokenizer family, while the active Azure family is
-              kept as a deterministic representative mapping for this app.
-            </p>
             <Button variant="danger" onClick={onReset}>
               Reset defaults
             </Button>
