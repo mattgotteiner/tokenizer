@@ -55,7 +55,7 @@ function AppContent(): React.ReactElement {
           <TopBar
             title={
               <div className="app-title-block">
-                <h1>Azure OpenAI Tokenizer</h1>
+                <h1>Tokenizer</h1>
               </div>
             }
             subtitle="Paste text, switch model families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."

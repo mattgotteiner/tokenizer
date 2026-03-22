@@ -7,7 +7,7 @@ describe('App', () => {
   it('renders the tokenizer app shell', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: 'Azure OpenAI Tokenizer' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Tokenizer' })).toBeInTheDocument()
     expect(screen.getByLabelText('Input text')).toBeInTheDocument()
   })
 
