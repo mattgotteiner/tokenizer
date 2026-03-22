@@ -38,62 +38,39 @@ function drawIcon(size) {
   ctx.fillStyle = '#ffffff';
   ctx.fill();
 
-  const leftInset = cardX + cardW * 0.14 - size * 0.0625;
-  const lineY = cardY + cardH * 0.25;
-  const lineHeight = Math.max(3, size * 0.078);
-  const lineRadius = lineHeight / 2;
-  const lineGap = cardH * 0.145;
-  const lineWidths = [cardW * 0.24, cardW * 0.2, cardW * 0.22, cardW * 0.17];
+  const tokenSize = cardW * 0.43;
+  const tokenRadius = tokenSize * 0.22;
+  const backTokenOffset = tokenSize * 0.25;
+  const groupSize = tokenSize + backTokenOffset;
+  const tokenX = cardX + (cardW - groupSize) / 2;
+  const tokenY = cardY + (cardH - groupSize) / 2 + backTokenOffset;
 
-  ctx.fillStyle = BG_COLOR;
-  lineWidths.forEach((lineWidth, index) => {
-    roundRect(
-      ctx,
-      leftInset,
-      lineY + index * lineGap,
-      lineWidth,
-      lineHeight,
-      lineRadius,
-    );
-    ctx.fill();
-  });
-
-  const playCenterX = cardX + cardW * 0.58;
-  const playCenterY = cardY + cardH * 0.5;
-  const playWidth = size * 0.17;
-  const playHeight = size * 0.22;
-  const playOffsetX = size * 0.096875;
-
-  ctx.beginPath();
-  ctx.moveTo(playCenterX - playOffsetX - playWidth * 0.45, playCenterY - playHeight * 0.55);
-  ctx.lineTo(playCenterX - playOffsetX - playWidth * 0.45, playCenterY + playHeight * 0.55);
-  ctx.lineTo(playCenterX - playOffsetX + playWidth * 0.65, playCenterY);
-  ctx.closePath();
+  roundRect(
+    ctx,
+    tokenX + backTokenOffset,
+    tokenY - backTokenOffset,
+    tokenSize,
+    tokenSize,
+    tokenRadius,
+  );
+  ctx.fillStyle = ACCENT_COLOR;
   ctx.fill();
 
-  ctx.strokeStyle = ACCENT_COLOR;
-  ctx.lineWidth = Math.max(2.5, size * 0.05);
-  ctx.lineCap = 'round';
+  roundRect(ctx, tokenX, tokenY, tokenSize, tokenSize, tokenRadius);
+  ctx.fillStyle = BG_COLOR;
+  ctx.fill();
 
-  const arcGap = size * 0.03;
-  const arcStart = -Math.PI / 3;
-  const arcEnd = Math.PI / 3;
-
-  ctx.beginPath();
-  ctx.arc(playCenterX + size * 0.012, playCenterY, size * 0.12, arcStart, arcEnd);
-  ctx.stroke();
-
-  if (size >= 24) {
-    ctx.beginPath();
-    ctx.arc(playCenterX + size * 0.018, playCenterY, size * 0.18 + arcGap, arcStart, arcEnd);
-    ctx.stroke();
-  }
-
-  if (size >= 32) {
-    ctx.beginPath();
-    ctx.arc(playCenterX + size * 0.024, playCenterY, size * 0.24 + arcGap * 2, arcStart, arcEnd);
-    ctx.stroke();
-  }
+  const inset = tokenSize * 0.24;
+  roundRect(
+    ctx,
+    tokenX + inset,
+    tokenY + inset,
+    tokenSize - inset * 2,
+    tokenSize - inset * 2,
+    tokenRadius * 0.45,
+  );
+  ctx.fillStyle = '#ffffff';
+  ctx.fill();
 
   return canvas;
 }

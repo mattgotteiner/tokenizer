@@ -1,5 +1,5 @@
 {
-  "name": "Azure OpenAI Tokenizer",
+  "name": "Tokenizer",
   "short_name": "Tokenizer",
   "description": "Inspect Azure OpenAI GPT tokenization in the browser.",
   "start_url": ".",
