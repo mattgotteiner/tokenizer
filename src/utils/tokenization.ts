@@ -52,11 +52,3 @@ export function tokenizeText(text: string, modelId: ModelId): TokenizationResult
     uniqueTokenCount: new Set(tokenIds).size,
   }
 }
-
-export function getUsagePercentage(tokenCount: number, maxContextWindow: number): number {
-  if (maxContextWindow <= 0) {
-    return 0
-  }
-
-  return Math.min((tokenCount / maxContextWindow) * 100, 100)
-}
