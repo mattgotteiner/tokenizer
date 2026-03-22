@@ -58,9 +58,6 @@ export function TokenResults({ result }: TokenResultsProps): React.ReactElement 
             <h3>Highlighted tokenization</h3>
             <p>Original text, split exactly where the selected tokenizer breaks it apart.</p>
           </div>
-          <div className="token-results__piece-count">
-            {result.tokens.length.toLocaleString()} pieces
-          </div>
         </div>
 
         <div

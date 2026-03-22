@@ -66,16 +66,6 @@
   color: var(--color-text-secondary);
 }
 
-.token-results__piece-count {
-  padding: 0.45rem 0.7rem;
-  border-radius: 999px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
 .token-results__tokenized-text {
   margin-top: 0.9rem;
   padding: 1rem 1.1rem;
