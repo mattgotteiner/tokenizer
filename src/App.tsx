@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   AppShell,
-  Banner,
   Button,
   Panel,
   ThemeProvider,
@@ -68,14 +67,13 @@ function AppContent(): React.ReactElement {
           />
         }
       >
-        <Banner
-          className="app-banner"
-          heading={`${result.model.label} uses ${result.encoding}`}
-          tone="info"
-        >
-          {activeEncoding.summary} This encoding is shared by {mappedModels.length} curated Azure
-          OpenAI GPT model families in this app.
-        </Banner>
+        <section className="app-banner" aria-label="Tokenizer summary">
+          <h2 className="app-banner__title">{`${result.model.label} uses ${result.encoding}`}</h2>
+          <p className="app-banner__message">
+            {activeEncoding.summary} This encoding is shared by {mappedModels.length} curated Azure
+            OpenAI GPT model families in this app.
+          </p>
+        </section>
 
         <div className="app-layout">
           <Panel as="section">

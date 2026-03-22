@@ -4,16 +4,22 @@
 
 .app-banner {
   margin-bottom: 1rem;
-  background-color: var(--color-surface) !important;
-  border-color: var(--color-border) !important;
-  color: var(--color-text-secondary) !important;
+  padding: 1rem 1.1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
 }
 
-.app-banner .spa-banner__title {
+.app-banner__title {
+  margin: 0;
   color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-.app-banner .spa-banner__message {
+.app-banner__message {
+  margin: 0.35rem 0 0;
   color: inherit;
 }
 
