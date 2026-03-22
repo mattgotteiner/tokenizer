@@ -4,6 +4,23 @@
 
 .app-banner {
   margin-bottom: 1rem;
+  padding: 1rem 1.1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+}
+
+.app-banner__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.app-banner__message {
+  margin: 0.35rem 0 0;
+  color: inherit;
 }
 
 .app-layout {
@@ -11,6 +28,11 @@
   gap: 1rem;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   align-items: start;
+}
+
+.app-layout .spa-panel {
+  background-color: var(--color-surface-elevated);
+  border-color: var(--color-border);
 }
 
 @media (max-width: 960px) {
