@@ -73,7 +73,7 @@ export function TokenResults({ result }: TokenResultsProps): React.ReactElement 
             <span
               key={`${token.index}-${token.tokenId}`}
               aria-label={`Piece ${token.index + 1}: ${token.displayValue}`}
-              className={`token-results__token token-results__token--tone-${(token.index % 3) + 1}`}
+              className={`token-results__token token-results__token--tone-${(token.index % 8) + 1}`}
               title={`Piece ${token.index + 1}: ${token.displayValue}`}
             >
               {getRenderedTokenValue(token)}

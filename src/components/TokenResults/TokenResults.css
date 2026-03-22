@@ -101,7 +101,7 @@
 }
 
 .token-results__token {
-  border: 1px solid var(--color-border-transparent);
+  border: 1px solid var(--token-color-border);
   border-radius: 0.45rem;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
@@ -109,15 +109,35 @@
 }
 
 .token-results__token--tone-1 {
-  background: var(--color-surface);
+  background: var(--token-color-tone-1);
 }
 
 .token-results__token--tone-2 {
-  background: var(--color-surface-elevated);
+  background: var(--token-color-tone-2);
 }
 
 .token-results__token--tone-3 {
-  background: var(--color-btn-surface);
+  background: var(--token-color-tone-3);
+}
+
+.token-results__token--tone-4 {
+  background: var(--token-color-tone-4);
+}
+
+.token-results__token--tone-5 {
+  background: var(--token-color-tone-5);
+}
+
+.token-results__token--tone-6 {
+  background: var(--token-color-tone-6);
+}
+
+.token-results__token--tone-7 {
+  background: var(--token-color-tone-7);
+}
+
+.token-results__token--tone-8 {
+  background: var(--token-color-tone-8);
 }
 
 .token-results__visualization-note {
