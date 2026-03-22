@@ -4,6 +4,17 @@
 
 .app-banner {
   margin-bottom: 1rem;
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+.app-banner .spa-banner__title {
+  color: var(--color-text);
+}
+
+.app-banner .spa-banner__message {
+  color: inherit;
 }
 
 .app-layout {
