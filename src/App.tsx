@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { type ComponentPropsWithoutRef, useMemo, useState } from 'react'
 import {
   AppShell,
   Panel,
@@ -13,6 +13,19 @@ import { TokenResults } from './components/TokenResults/TokenResults'
 import { SettingsProvider, useSettingsContext } from './context/SettingsContext'
 import { getEncodingDefinition } from './types'
 import { tokenizeText } from './utils/tokenization'
+
+interface TopbarSettingsButtonProps extends ComponentPropsWithoutRef<typeof SettingsButton> {
+  variant?: 'topbar'
+}
+
+function TopbarSettingsButton({
+  variant = 'topbar',
+  ...props
+}: TopbarSettingsButtonProps): React.ReactElement {
+  // The published spa-ui-controls package is one release behind the upstream topbar variant API.
+  void variant
+  return <SettingsButton {...props} />
+}
 
 function AppContent(): React.ReactElement {
   const { settings, resetSettings, updateSettings } = useSettingsContext()
@@ -37,15 +50,15 @@ function AppContent(): React.ReactElement {
               <div className="app-title-block">
                 <h1>Tokenizer</h1>
               </div>
-             }
-             subtitle="Paste text, switch tokenizer families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
-             trailing={
-               <SettingsButton
-                 className="app-settings-button"
-                 onClick={() => setIsSettingsOpen(true)}
-               />
-             }
-           />
+              }
+              subtitle="Paste text, switch tokenizer families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
+              trailing={
+                <TopbarSettingsButton
+                  onClick={() => setIsSettingsOpen(true)}
+                  variant="topbar"
+                />
+              }
+            />
          }
        >
         <div className="app-layout">

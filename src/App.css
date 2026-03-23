@@ -9,30 +9,6 @@
   margin: 0;
 }
 
-.app-settings-button.spa-icon-button {
-  background: transparent;
-  border: 1px solid var(--spa-color-border);
-  border-radius: var(--spa-radius-md);
-  height: 40px;
-  padding: 8px;
-  width: 40px;
-}
-
-.app-settings-button .spa-settings-button__icon {
-  color: var(--spa-color-text-secondary);
-}
-
-@media (hover: hover) {
-  .app-settings-button.spa-icon-button:hover:not(:disabled) {
-    background-color: var(--spa-color-surface);
-    border-color: var(--spa-color-border-muted);
-  }
-
-  .app-settings-button:hover .spa-settings-button__icon {
-    color: var(--spa-color-text);
-  }
-}
-
 .app-layout {
   display: grid;
   gap: 1rem;
