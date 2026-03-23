@@ -1,36 +1,18 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import {
   AppShell,
   Panel,
+  SettingsButton,
   ThemeProvider,
   TopBar,
-  useTheme,
 } from '@mattgotteiner/spa-ui-controls'
 import './App.css'
-import { SettingsButton } from './components/SettingsButton/SettingsButton'
 import { SettingsSidebar } from './components/SettingsSidebar/SettingsSidebar'
 import { TokenInput } from './components/TokenInput/TokenInput'
 import { TokenResults } from './components/TokenResults/TokenResults'
 import { SettingsProvider, useSettingsContext } from './context/SettingsContext'
 import { getEncodingDefinition } from './types'
-import type { Theme } from './types'
 import { tokenizeText } from './utils/tokenization'
-
-interface ThemeSettingsSyncProps {
-  theme: Theme
-}
-
-function ThemeSettingsSync({ theme }: ThemeSettingsSyncProps): React.ReactElement | null {
-  const { setTheme, theme: activeTheme } = useTheme()
-
-  useEffect(() => {
-    if (activeTheme !== theme) {
-      setTheme(theme)
-    }
-  }, [activeTheme, setTheme, theme])
-
-  return null
-}
 
 function AppContent(): React.ReactElement {
   const { settings, resetSettings, updateSettings } = useSettingsContext()
@@ -47,8 +29,7 @@ function AppContent(): React.ReactElement {
   const activeEncoding = getEncodingDefinition(result.encoding)
 
   return (
-    <ThemeProvider initialTheme={settings.theme} persist={false}>
-      <ThemeSettingsSync theme={settings.theme} />
+    <ThemeProvider persist={false} theme={settings.theme}>
       <AppShell
         header={
           <TopBar
@@ -59,40 +40,40 @@ function AppContent(): React.ReactElement {
             }
             subtitle="Paste text, switch tokenizer families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
             trailing={
-                <SettingsButton onClick={() => setIsSettingsOpen(true)} />
+              <SettingsButton onClick={() => setIsSettingsOpen(true)} />
             }
           />
         }
       >
-          <div className="app-layout">
-            <Panel as="section">
-              <TokenInput
-                inputText={inputText}
-                onClear={() => setInputText('')}
-                onInputChange={setInputText}
-                onLoadSample={() =>
-                  setInputText(
-                    'Tokenization matters when you are budgeting prompt size, comparing deployment families, and understanding how much context your Azure OpenAI request will consume.',
-                  )
-                }
-                result={result}
-              />
-            </Panel>
+        <div className="app-layout">
+          <Panel as="section">
+            <TokenInput
+              inputText={inputText}
+              onClear={() => setInputText('')}
+              onInputChange={setInputText}
+              onLoadSample={() =>
+                setInputText(
+                  'Tokenization matters when you are budgeting prompt size, comparing deployment families, and understanding how much context your Azure OpenAI request will consume.',
+                )
+              }
+              result={result}
+            />
+          </Panel>
 
-            <Panel as="section">
-              <TokenResults result={result} />
-            </Panel>
-          </div>
+          <Panel as="section">
+            <TokenResults result={result} />
+          </Panel>
+        </div>
 
-          <SettingsSidebar
-            encoding={activeEncoding}
-            isOpen={isSettingsOpen}
-            onClose={() => setIsSettingsOpen(false)}
-            onReset={resetSettings}
-            onUpdate={updateSettings}
-            settings={settings}
-          />
-        </AppShell>
+        <SettingsSidebar
+          encoding={activeEncoding}
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+          onReset={resetSettings}
+          onUpdate={updateSettings}
+          settings={settings}
+        />
+      </AppShell>
     </ThemeProvider>
   )
 }
