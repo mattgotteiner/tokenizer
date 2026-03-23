@@ -1,0 +1,127 @@
+.settings-panel {
+  color: var(--spa-color-text);
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spa-space-3);
+  margin-bottom: var(--spa-space-5);
+}
+
+.settings-section--clear {
+  border-top: 1px solid var(--spa-color-border);
+  margin-bottom: 0;
+  padding-top: var(--spa-space-4);
+}
+
+.settings-section__title {
+  color: var(--spa-color-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spa-space-2);
+}
+
+.settings-field__label {
+  color: var(--spa-color-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.settings-field__radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spa-space-4);
+}
+
+.settings-field__radio-wrapper {
+  align-items: center;
+  color: var(--spa-color-text);
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+}
+
+.settings-field__radio {
+  accent-color: var(--spa-color-primary);
+  cursor: pointer;
+  height: 16px;
+  margin: 0;
+  width: 16px;
+}
+
+.settings-field__radio-label {
+  font-size: 14px;
+}
+
+.settings-tokenizer-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spa-space-3);
+}
+
+.settings-tokenizer-option {
+  align-items: flex-start;
+  background-color: var(--spa-color-surface);
+  border: 1px solid var(--spa-color-border);
+  border-radius: var(--spa-radius-md);
+  color: var(--spa-color-text);
+  cursor: pointer;
+  display: flex;
+  gap: var(--spa-space-3);
+  padding: 10px 12px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.settings-tokenizer-option--selected {
+  background-color: var(--spa-color-banner-info-bg);
+  border-color: var(--spa-color-primary);
+}
+
+.settings-tokenizer-option:focus-within {
+  outline: 2px solid var(--spa-color-primary);
+  outline-offset: 2px;
+}
+
+.settings-tokenizer-option__radio {
+  accent-color: var(--spa-color-primary);
+  cursor: pointer;
+  height: 16px;
+  margin: 2px 0 0;
+  width: 16px;
+}
+
+.settings-tokenizer-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-tokenizer-option__title {
+  font-weight: 600;
+}
+
+.settings-tokenizer-option__details {
+  color: var(--spa-color-text-muted);
+  font-size: 0.85rem;
+}
+
+@media (hover: hover) {
+  .settings-tokenizer-option:hover {
+    background-color: var(--spa-color-surface-elevated);
+    border-color: var(--spa-color-border-muted);
+  }
+
+  .settings-tokenizer-option--selected:hover {
+    background-color: var(--spa-color-banner-info-bg);
+    border-color: var(--spa-color-primary);
+  }
+}

@@ -1,4 +1,11 @@
+.app-title-block {
+  min-width: 0;
+}
+
 .app-title-block h1 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.25;
   margin: 0;
 }
 
@@ -17,5 +24,11 @@
 @media (max-width: 960px) {
   .app-layout {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-title-block h1 {
+    font-size: 1rem;
   }
 }
