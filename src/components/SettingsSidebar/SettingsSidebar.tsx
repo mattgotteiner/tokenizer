@@ -28,7 +28,6 @@ export function SettingsSidebar({
 
   return (
     <SettingsDrawer
-      description="Choose appearance and tokenizer family preferences."
       footer={
         <Button variant="danger" onClick={onReset}>
           Reset defaults
