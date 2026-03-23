@@ -37,14 +37,17 @@ function AppContent(): React.ReactElement {
               <div className="app-title-block">
                 <h1>Tokenizer</h1>
               </div>
-            }
-            subtitle="Paste text, switch tokenizer families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
-            trailing={
-              <SettingsButton onClick={() => setIsSettingsOpen(true)} />
-            }
-          />
-        }
-      >
+             }
+             subtitle="Paste text, switch tokenizer families, and inspect how common Azure OpenAI GPT deployments tokenize input locally in the browser."
+             trailing={
+               <SettingsButton
+                 className="app-settings-button"
+                 onClick={() => setIsSettingsOpen(true)}
+               />
+             }
+           />
+         }
+       >
         <div className="app-layout">
           <Panel as="section">
             <TokenInput

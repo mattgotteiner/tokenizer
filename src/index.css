@@ -264,6 +264,40 @@ a:hover {
   text-decoration: underline;
 }
 
+.spa-drawer__header .spa-icon-button {
+  background: none;
+  border: none;
+  border-radius: var(--spa-radius-md);
+  color: var(--spa-color-text-secondary);
+  font-size: 20px;
+  height: 44px;
+  padding: 0;
+  width: 44px;
+}
+
+.spa-drawer--right {
+  animation: settings-drawer-slide-in 0.2s ease-out;
+  border-left: 1px solid var(--spa-color-border);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes settings-drawer-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (hover: hover) {
+  .spa-drawer__header .spa-icon-button:hover:not(:disabled) {
+    background-color: var(--spa-color-surface-elevated);
+    color: var(--spa-color-text);
+  }
+}
+
 button,
 input,
 select,
