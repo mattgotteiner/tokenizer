@@ -1,5 +1,4 @@
-import { Button } from '@mattgotteiner/spa-ui-controls'
-import { useEffect } from 'react'
+import { Button, SettingsDrawer } from '@mattgotteiner/spa-ui-controls'
 import {
   THEME_OPTIONS,
   type AppSettings,
@@ -27,123 +26,82 @@ export function SettingsSidebar({
 }: SettingsSidebarProps): React.ReactElement {
   const tokenizerSelections = getTokenizerSelections()
 
-  useEffect(() => {
-    if (!isOpen) {
-      return undefined
-    }
-
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape') {
-        onClose()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen, onClose])
-
-  if (!isOpen) {
-    return <></>
-  }
-
   return (
-    <div
-      className="settings-overlay"
-      onClick={(event) => {
-        if (event.target === event.currentTarget) {
-          onClose()
-        }
-      }}
+    <SettingsDrawer
+      description="Choose appearance and tokenizer family preferences."
+      footer={
+        <Button variant="danger" onClick={onReset}>
+          Reset defaults
+        </Button>
+      }
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Settings"
+      width={400}
     >
-      <aside
-        aria-labelledby="settings-sidebar-title"
-        aria-modal="true"
-        className="settings-sidebar"
-        role="dialog"
-      >
-        <div className="settings-sidebar__header">
-          <h2 id="settings-sidebar-title" className="settings-sidebar__title">
-            Settings
-          </h2>
-          <button
-            type="button"
-            className="settings-sidebar__close"
-            onClick={onClose}
-            aria-label="Close settings"
+      <div className="settings-sidebar__content">
+        <section className="settings-section">
+          <h3 className="settings-section__title">Appearance</h3>
+
+          <div className="settings-field">
+            <span className="settings-field__label">Theme</span>
+            <div className="settings-field__radio-group">
+              {THEME_OPTIONS.map((theme) => (
+                <label key={theme} className="settings-field__radio-wrapper">
+                  <input
+                    type="radio"
+                    name="theme"
+                    className="settings-field__radio"
+                    value={theme}
+                    checked={settings.theme === theme}
+                    onChange={() => onUpdate({ theme })}
+                  />
+                  <span className="settings-field__radio-label">
+                    {theme.charAt(0).toUpperCase() + theme.slice(1)}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="settings-section">
+          <h3 className="settings-section__title">Tokenizer family</h3>
+          <div
+            className="settings-sidebar__tokenizer-options"
+            role="radiogroup"
+            aria-label="Tokenizer family"
           >
-            ✕
-          </button>
-        </div>
+            {tokenizerSelections.map((selection) => {
+              const isSelected = encoding.id === selection.encoding.id
 
-        <div className="settings-sidebar__content">
-          <section className="settings-section">
-            <h3 className="settings-section__title">Appearance</h3>
-
-            <div className="settings-field">
-              <span className="settings-field__label">Theme</span>
-              <div className="settings-field__radio-group">
-                {THEME_OPTIONS.map((theme) => (
-                  <label key={theme} className="settings-field__radio-wrapper">
-                    <input
-                      type="radio"
-                      name="theme"
-                      className="settings-field__radio"
-                      value={theme}
-                      checked={settings.theme === theme}
-                      onChange={() => onUpdate({ theme })}
-                    />
-                    <span className="settings-field__radio-label">
-                      {theme.charAt(0).toUpperCase() + theme.slice(1)}
+              return (
+                <label
+                  key={selection.encoding.id}
+                  className={`settings-sidebar__tokenizer-option${isSelected ? ' settings-sidebar__tokenizer-option--selected' : ''}`}
+                >
+                  <input
+                    type="radio"
+                    name="tokenizer-family"
+                    className="settings-sidebar__tokenizer-radio"
+                    aria-label={`Select ${selection.encoding.label} tokenizer family`}
+                    checked={isSelected}
+                    onChange={() => onUpdate({ modelId: selection.encoding.representativeModelId })}
+                  />
+                  <span className="settings-sidebar__tokenizer-body">
+                    <span className="settings-sidebar__tokenizer-title">
+                      {selection.encoding.label}
                     </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="settings-section">
-            <h3 className="settings-section__title">Tokenizer family</h3>
-            <div className="settings-sidebar__tokenizer-options" role="radiogroup">
-              {tokenizerSelections.map((selection) => {
-                const isSelected = encoding.id === selection.encoding.id
-
-                return (
-                  <label
-                    key={selection.encoding.id}
-                    className={`settings-sidebar__tokenizer-option${isSelected ? ' settings-sidebar__tokenizer-option--selected' : ''}`}
-                  >
-                    <input
-                      type="radio"
-                      name="tokenizer-family"
-                      className="settings-sidebar__tokenizer-radio"
-                      aria-label={`Select ${selection.encoding.label} tokenizer family`}
-                      checked={isSelected}
-                      onChange={() => onUpdate({ modelId: selection.encoding.representativeModelId })}
-                    />
-                    <span className="settings-sidebar__tokenizer-body">
-                      <span className="settings-sidebar__tokenizer-title">
-                        {selection.encoding.label}
-                      </span>
-                      <span className="settings-sidebar__tokenizer-families">
-                        {selection.modelFamilies.map((model) => model.label).join(', ')}
-                      </span>
+                    <span className="settings-sidebar__tokenizer-families">
+                      {selection.modelFamilies.map((model) => model.label).join(', ')}
                     </span>
-                  </label>
-                )
-              })}
-            </div>
-          </section>
-
-          <section className="settings-section">
-            <Button variant="danger" onClick={onReset}>
-              Reset defaults
-            </Button>
-          </section>
-        </div>
-      </aside>
-    </div>
+                  </span>
+                </label>
+              )
+            })}
+          </div>
+        </section>
+      </div>
+    </SettingsDrawer>
   )
 }
