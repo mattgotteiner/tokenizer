@@ -28,6 +28,7 @@ export function SettingsSidebar({
 
   return (
     <SettingsDrawer
+      description={null}
       footer={
         <Button variant="danger" onClick={onReset}>
           Reset defaults
