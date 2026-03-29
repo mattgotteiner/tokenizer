@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
+import { THEME_OPTIONS } from '@mattgotteiner/spa-ui-controls'
 import {
   APP_SETTINGS_STORAGE_KEY,
   DEFAULT_SETTINGS,
   MODEL_DEFINITIONS,
-  THEME_OPTIONS,
   type AppSettings,
   type ModelId,
   type Theme,

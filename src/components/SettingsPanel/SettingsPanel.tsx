@@ -1,6 +1,5 @@
-import { Button } from '@mattgotteiner/spa-ui-controls'
+import { Button, ThemeToggle } from '@mattgotteiner/spa-ui-controls'
 import {
-  THEME_OPTIONS,
   type AppSettings,
   type EncodingDefinition,
   getTokenizerSelections,
@@ -29,23 +28,11 @@ export function SettingsPanel({
 
         <div className="settings-field">
           <span className="settings-field__label">Theme</span>
-          <div className="settings-field__radio-group">
-            {THEME_OPTIONS.map((theme) => (
-              <label key={theme} className="settings-field__radio-wrapper">
-                <input
-                  type="radio"
-                  name="theme"
-                  className="settings-field__radio"
-                  value={theme}
-                  checked={settings.theme === theme}
-                  onChange={() => onUpdate({ theme })}
-                />
-                <span className="settings-field__radio-label">
-                  {theme.charAt(0).toUpperCase() + theme.slice(1)}
-                </span>
-              </label>
-            ))}
-          </div>
+          <ThemeToggle
+            className="settings-field__theme-toggle"
+            onChange={(theme) => onUpdate({ theme })}
+            value={settings.theme}
+          />
         </div>
       </section>
 

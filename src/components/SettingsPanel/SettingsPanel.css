@@ -36,30 +36,9 @@
   font-weight: 600;
 }
 
-.settings-field__radio-group {
-  display: flex;
+.settings-field__theme-toggle {
+  align-self: flex-start;
   flex-wrap: wrap;
-  gap: var(--spa-space-4);
-}
-
-.settings-field__radio-wrapper {
-  align-items: center;
-  color: var(--spa-color-text);
-  cursor: pointer;
-  display: flex;
-  gap: 6px;
-}
-
-.settings-field__radio {
-  accent-color: var(--spa-color-primary);
-  cursor: pointer;
-  height: 16px;
-  margin: 0;
-  width: 16px;
-}
-
-.settings-field__radio-label {
-  font-size: 14px;
 }
 
 .settings-tokenizer-options {

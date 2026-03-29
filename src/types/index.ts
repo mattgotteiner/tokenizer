@@ -1,7 +1,8 @@
+import type { ThemeMode } from '@mattgotteiner/spa-ui-controls'
+
 export const APP_SETTINGS_STORAGE_KEY = 'tokenizer-settings'
 
-export type Theme = 'light' | 'dark' | 'system'
-export const THEME_OPTIONS: Theme[] = ['light', 'dark', 'system']
+export type Theme = ThemeMode
 
 export type ModelId =
   | 'gpt-5'
