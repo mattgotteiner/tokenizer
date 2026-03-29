@@ -1,4 +1,4 @@
-import { Drawer } from '@mattgotteiner/spa-ui-controls'
+import { SettingsDrawer } from '@mattgotteiner/spa-ui-controls'
 import type { AppSettings, EncodingDefinition } from '../../types'
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel'
 
@@ -20,13 +20,13 @@ export function SettingsSidebar({
   settings,
 }: SettingsSidebarProps): React.ReactElement {
   return (
-    <Drawer closeLabel="Close settings" isOpen={isOpen} onClose={onClose} side="right" title="Settings" width={400}>
+    <SettingsDrawer isOpen={isOpen} onClose={onClose} title="Settings" width={400}>
       <SettingsPanel
         encoding={encoding}
         onReset={onReset}
         onUpdate={onUpdate}
         settings={settings}
       />
-    </Drawer>
+    </SettingsDrawer>
   )
 }

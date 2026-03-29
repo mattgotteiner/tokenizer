@@ -16,7 +16,7 @@
     "generate-icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
-    "@mattgotteiner/spa-ui-controls": "^0.1.0-main.5",
+    "@mattgotteiner/spa-ui-controls": "^0.1.0-main.6",
     "js-tiktoken": "^1.0.21",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
